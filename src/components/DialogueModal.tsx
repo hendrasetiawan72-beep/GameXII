@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NPC, DayNumber, Gender } from '../types/game';
 import { NPCPixelSprite, PlayerPixelSprite } from './PixelSprites';
-import { X, ChevronRight, Sparkles, Volume2 } from 'lucide-react';
+import { X, ChevronRight, Flame, Volume2 } from 'lucide-react';
 import { sound } from '../utils/audio';
 
 interface DialogueModalProps {
@@ -111,7 +111,7 @@ export const DialogueModal: React.FC<DialogueModalProps> = ({
               {/* Expression Tip */}
               {currentLine.expressionTip && (
                 <div className="flex items-center gap-2 bg-amber-100/90 border border-amber-800/30 px-3 py-1.5 rounded-xl text-xs text-amber-950">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                  <Flame className="w-3.5 h-3.5 text-orange-600 fill-orange-500 shrink-0" />
                   <span className="font-medium">Expression: {currentLine.expressionTip}</span>
                 </div>
               )}

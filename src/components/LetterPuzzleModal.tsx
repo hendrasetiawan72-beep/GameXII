@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LETTER_PARTS } from '../data/gameData';
 import { LetterSection } from '../types/game';
-import { X, ArrowUp, ArrowDown, Check, HelpCircle, Sparkles } from 'lucide-react';
+import { X, ArrowUp, ArrowDown, Check, HelpCircle, Flame } from 'lucide-react';
 import { sound } from '../utils/audio';
 import confetti from 'canvas-confetti';
 
@@ -125,7 +125,7 @@ export const LetterPuzzleModal: React.FC<LetterPuzzleModalProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 bg-amber-400 border-b-2 border-slate-900">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-slate-900" />
+            <Flame className="w-4 h-4 text-orange-600 fill-orange-500" />
             <span className="font-pixel text-xs sm:text-sm font-bold text-slate-900">
               APPLICATION LETTER PUZZLE
             </span>

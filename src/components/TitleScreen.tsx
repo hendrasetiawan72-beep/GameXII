@@ -1,6 +1,6 @@
 import React from 'react';
 import { PlayerPixelSprite } from './PixelSprites';
-import { Play, Volume2, VolumeX, Music, HelpCircle, Sparkles, BookOpen } from 'lucide-react';
+import { Play, Volume2, VolumeX, Music, HelpCircle, Flame, BookOpen } from 'lucide-react';
 import { sound } from '../utils/audio';
 
 interface TitleScreenProps {
@@ -81,12 +81,13 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
 
       {/* Main Title Centerpiece */}
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center my-6 max-w-2xl text-center">
-        {/* Decorative Badge */}
+        {/* Decorative Badge with Flame */}
         <div className="inline-flex items-center gap-1.5 bg-amber-200 border-2 border-slate-900 rounded-full px-3.5 py-1 mb-3 shadow-[2px_2px_0px_0px_#0F172A]">
-          <Sparkles className="w-3.5 h-3.5 text-amber-700" />
+          <Flame className="w-4 h-4 text-orange-600 fill-orange-500" />
           <span className="font-pixel text-[9px] sm:text-[10px] text-amber-950 font-bold uppercase tracking-wider">
             English Career Adventure · CEFR A2-B1
           </span>
+          <Flame className="w-4 h-4 text-orange-600 fill-orange-500" />
         </div>
 
         {/* Main Pixel Title Banner */}

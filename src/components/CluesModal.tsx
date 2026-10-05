@@ -1,7 +1,7 @@
 import React from 'react';
 import { DayNumber } from '../types/game';
 import { GAME_CLUES } from '../data/gameData';
-import { X, CheckCircle, Sparkles, BookOpen } from 'lucide-react';
+import { X, CheckCircle, Flame, BookOpen } from 'lucide-react';
 import { sound } from '../utils/audio';
 
 interface CluesModalProps {
@@ -20,7 +20,7 @@ export const CluesModal: React.FC<CluesModalProps> = ({
         {/* Header */}
         <div className="px-4 py-3 bg-amber-400 border-b-2 border-slate-900 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-slate-900" />
+            <Flame className="w-4 h-4 text-orange-600 fill-orange-500" />
             <span className="font-pixel text-xs sm:text-sm font-bold text-slate-900">
               COLLECTED CAREER CLUES ({cluesFound.length} FOUND)
             </span>

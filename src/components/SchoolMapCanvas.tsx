@@ -3,7 +3,7 @@ import { Major, Gender, DayNumber, MapLocation, NPC, ClueItem } from '../types/g
 import { MAP_LOCATIONS, GAME_NPCS, GAME_CLUES } from '../data/gameData';
 import { PlayerPixelSprite, NPCPixelSprite } from './PixelSprites';
 import { sound } from '../utils/audio';
-import { Sparkles, MessageCircle, FileText, ChevronRight } from 'lucide-react';
+import { Flame, MessageCircle, FileText, ChevronRight } from 'lucide-react';
 
 interface SchoolMapProps {
   playerGender: Gender;
@@ -340,7 +340,7 @@ export const SchoolMapCanvas: React.FC<SchoolMapProps> = ({
 
               {hasClueHere && (
                 <div className="absolute -top-2.5 -right-2.5 bg-amber-400 border border-slate-900 rounded-full p-1 shadow-[1px_1px_0px_0px_#000] animate-bounce">
-                  <Sparkles className="w-3 h-3 text-slate-900" />
+                  <Flame className="w-3 h-3 text-orange-600 fill-orange-500" />
                 </div>
               )}
             </div>
@@ -441,7 +441,7 @@ export const SchoolMapCanvas: React.FC<SchoolMapProps> = ({
               {!nearbyNpc && nearbyClue && (
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5">
-                    <Sparkles className="w-4 h-4 text-amber-600 animate-spin shrink-0" />
+                    <Flame className="w-4 h-4 text-orange-600 fill-orange-500 animate-pulse shrink-0" />
                     <div>
                       <p className="font-pixel text-[10px] text-slate-900 font-bold">
                         {nearbyClue.title}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Gender } from '../types/game';
 import { PlayerPixelSprite } from './PixelSprites';
-import { User, Sparkles, ArrowRight } from 'lucide-react';
+import { User, Flame, ArrowRight } from 'lucide-react';
 import { sound } from '../utils/audio';
 
 interface CustomizeModalProps {
@@ -108,7 +108,7 @@ export const CustomizeModal: React.FC<CustomizeModalProps> = ({
               type="submit"
               className="w-full pixel-btn bg-emerald-400 hover:bg-emerald-500 text-slate-900 py-3 text-xs font-pixel flex items-center justify-center gap-2 cursor-pointer rounded-xl shadow-[3px_3px_0px_0px_#0F172A]"
             >
-              <Sparkles className="w-4 h-4" />
+              <Flame className="w-4 h-4 text-orange-600 fill-orange-500" />
               <span>CONFIRM & CHOOSE MAJOR</span>
               <ArrowRight className="w-4 h-4" />
             </button>

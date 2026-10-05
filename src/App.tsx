@@ -235,7 +235,7 @@ export default function App() {
       {clueNotification && (
         <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 animate-bounce pointer-events-none">
           <div className="bg-amber-300 border-2 border-slate-900 px-4 py-2 rounded-2xl shadow-[3px_3px_0px_0px_#000] text-slate-900 font-pixel text-xs font-bold text-center">
-            ✨ {clueNotification} ✨
+            🔥 {clueNotification} 🔥
           </div>
         </div>
       )}

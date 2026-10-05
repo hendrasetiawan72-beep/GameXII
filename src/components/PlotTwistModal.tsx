@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Major } from '../types/game';
 import { NPCPixelSprite } from './PixelSprites';
-import { Mail, Sparkles, Briefcase, GraduationCap, ArrowRight, Award, Volume2 } from 'lucide-react';
+import { Mail, Flame, Briefcase, GraduationCap, ArrowRight, Award, Volume2 } from 'lucide-react';
 import { sound } from '../utils/audio';
 
 interface PlotTwistModalProps {
@@ -94,7 +94,7 @@ export const PlotTwistModal: React.FC<PlotTwistModalProps> = ({
           <div>
             <div className="bg-amber-400 p-3.5 border-b-2 border-slate-900 flex items-center justify-between">
               <div className="flex items-center gap-2 font-pixel text-xs sm:text-sm text-slate-900">
-                <Sparkles className="w-4 h-4" />
+                <Flame className="w-4 h-4 text-orange-600 fill-orange-500" />
                 <span>THE REVELATION · MR. HENDRA</span>
               </div>
               <span className="font-pixel text-[10px] bg-slate-900 text-amber-300 px-2.5 py-0.5 rounded-md">

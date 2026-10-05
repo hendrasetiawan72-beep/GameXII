@@ -71,8 +71,8 @@ export const ChooseMajorModal: React.FC<ChooseMajorModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-5 bg-slate-950/85 backdrop-blur-xs select-none font-sans overflow-y-auto">
-      <div className="relative w-full max-w-3xl max-h-[92vh] flex flex-col my-auto bg-[#FFFDF5] border-2 border-slate-900 rounded-3xl shadow-[8px_8px_0px_0px_#0F172A] overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2 sm:p-4 bg-slate-950/85 backdrop-blur-xs select-none font-sans overflow-y-auto overscroll-y-contain">
+      <div className="relative w-full max-w-3xl my-auto flex flex-col bg-[#FFFDF5] border-2 border-slate-900 rounded-3xl shadow-[8px_8px_0px_0px_#0F172A] overflow-hidden max-h-[92vh] sm:max-h-[90vh]">
         {/* Header */}
         <div className="px-4 py-3 sm:px-5 sm:py-4 bg-amber-400 border-b-2 border-slate-900 text-center shrink-0">
           <h2 className="font-display text-base sm:text-xl font-extrabold text-slate-900">
@@ -81,10 +81,16 @@ export const ChooseMajorModal: React.FC<ChooseMajorModalProps> = ({
           <p className="font-pixel text-[9px] sm:text-[10px] text-slate-800 mt-1">
             SMK Muhammadiyah Bawang · Each major features a unique story, mentor, and career quest!
           </p>
+          <div className="md:hidden mt-1.5 inline-flex items-center gap-1 bg-amber-200/90 border border-amber-900/30 px-2 py-0.5 rounded-full text-[9px] font-pixel text-amber-950">
+            <span>↓ Scroll to explore all 3 majors</span>
+          </div>
         </div>
 
         {/* 3 Major Cards Grid - Smooth Mobile Scrolling */}
-        <div className="flex-1 overflow-y-auto overscroll-contain p-3 sm:p-6 grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 touch-pan-y">
+        <div
+          className="flex-1 overflow-y-auto overscroll-contain p-3 sm:p-6 grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 touch-pan-y"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+        >
           {majors.map((item) => (
             <div
               key={item.id}
@@ -134,7 +140,7 @@ export const ChooseMajorModal: React.FC<ChooseMajorModalProps> = ({
               <div className="pt-4 mt-2">
                 <button
                   onClick={() => handleChoose(item.id)}
-                  className="w-full pixel-btn bg-amber-400 hover:bg-amber-500 text-slate-900 py-2.5 text-xs font-pixel flex items-center justify-center gap-1.5 cursor-pointer rounded-xl shadow-[2px_2px_0px_0px_#000]"
+                  className="w-full pixel-btn bg-amber-400 hover:bg-amber-500 text-slate-900 py-2.5 text-xs font-pixel flex items-center justify-center gap-1.5 cursor-pointer rounded-xl shadow-[2px_2px_0px_0px_#000] active:scale-95"
                 >
                   <span>SELECT {item.name}</span>
                   <ArrowRight className="w-3.5 h-3.5" />

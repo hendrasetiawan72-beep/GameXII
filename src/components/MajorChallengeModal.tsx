@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Major } from '../types/game';
 import { MAJOR_MATCHING_PAIRS } from '../data/gameData';
-import { X, Check, Wrench, Cpu, Calculator, Sparkles } from 'lucide-react';
+import { X, Check, Wrench, Cpu, Calculator, Flame } from 'lucide-react';
 import { sound } from '../utils/audio';
 import confetti from 'canvas-confetti';
 
@@ -611,7 +611,7 @@ export const MajorChallengeModal: React.FC<MajorChallengeModalProps> = ({
 
               <div className="bg-amber-100 border border-amber-800/30 p-3.5 rounded-2xl flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-amber-700" />
+                  <Flame className="w-4 h-4 text-orange-600 fill-orange-500" />
                   <span className="font-pixel text-xs text-amber-950 font-bold">
                     VOCATIONAL LETTER READY! (+10 PTS)
                   </span>

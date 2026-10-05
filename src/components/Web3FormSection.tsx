@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { PlayerState } from '../types/game';
 import { getCandidateTier } from '../data/gameData';
-import { Send, CheckCircle2, AlertTriangle, Building, Award, ShieldCheck, ArrowLeft } from 'lucide-react';
+import { Send, CheckCircle2, AlertTriangle, Building, Award, Flame, ArrowLeft } from 'lucide-react';
 import { sound } from '../utils/audio';
 import confetti from 'canvas-confetti';
 
@@ -152,10 +152,11 @@ export const Web3FormSection: React.FC<Web3FormSectionProps> = ({
               OFFICIAL EVALUATION TIER:
             </span>
             <div className="flex items-center justify-center gap-2 mt-1">
-              <ShieldCheck className="w-5 h-5 text-emerald-600" />
+              <Flame className="w-5 h-5 text-orange-500 fill-orange-500 animate-pulse" />
               <h3 className="font-display text-base sm:text-xl font-extrabold text-slate-900">
                 {tierInfo.tier}
               </h3>
+              <Flame className="w-5 h-5 text-orange-500 fill-orange-500 animate-pulse" />
             </div>
             <p className="text-xs text-slate-700 mt-1 max-w-md mx-auto">
               {tierInfo.summaryEn}
