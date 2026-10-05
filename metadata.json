@@ -1,0 +1,6 @@
+{
+  "name": "Application Letter Adventure: Muhiba Career Quest",
+  "description": "2D retro pixel-art vocational career adventure and English learning game for SMK Muhammadiyah Bawang students.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
