@@ -39,30 +39,17 @@ export const Web3FormSection: React.FC<Web3FormSectionProps> = ({
       e.preventDefault();
 
       const formData = new FormData(form);
+      formData.append("access_key", "b71a1e03-8d9c-4552-a9ef-653af39df983");
 
-      formData.append('access_key', '41933c2d-787e-483f-a700-ec9cddd2e3a3');
-      formData.append('student_name', player.name || 'Student');
-      formData.append('major', player.major);
-      formData.append('career_path', careerPath);
-      formData.append('final_score', String(player.scores.totalScore));
-      formData.append('english_score', String(player.scores.englishScore));
-      formData.append('application_letter_score', String(player.scores.letterScore));
-      formData.append('quiz_score', String(player.scores.quiz));
-      formData.append('clues_completed', String(player.cluesFound.length));
-      formData.append('days_completed', String(player.daysCompleted.length || 5));
-      formData.append('final_decision', player.finalDecision || 'WORK');
-      formData.append('game_title', 'Application Letter Adventure: Muhiba Career Quest');
-      formData.append('completion_status', 'Completed');
+      const originalText = submitBtn.textContent;
 
-      const originalText = submitBtn.textContent || 'Send to Mr. Hendra';
-
-      submitBtn.textContent = 'Sending...';
+      submitBtn.textContent = "Sending...";
       submitBtn.disabled = true;
       setSubmissionStatus('sending');
 
       try {
-        const response = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
           body: formData
         });
 
@@ -73,20 +60,27 @@ export const Web3FormSection: React.FC<Web3FormSectionProps> = ({
           try {
             confetti({ particleCount: 80, spread: 80 });
           } catch {}
-          setStatusMessage('Success! Your career quest results have been successfully sent to Mr. Hendra.');
+          try {
+            alert("Success! Your message has been sent.");
+          } catch {}
+          setStatusMessage("Success! Your message has been sent.");
           setSubmissionStatus('success');
           form.reset();
-
-          // Automatically countdown and return to home title screen
           setCountdown(3);
         } else {
           sound.playWrong();
-          setStatusMessage('Error: ' + data.message);
+          try {
+            alert("Error: " + data.message);
+          } catch {}
+          setStatusMessage("Error: " + data.message);
           setSubmissionStatus('error');
         }
-      } catch {
+      } catch (error) {
         sound.playWrong();
-        setStatusMessage('Something went wrong. Please check your connection and try again.');
+        try {
+          alert("Something went wrong. Please try again.");
+        } catch {}
+        setStatusMessage("Something went wrong. Please try again.");
         setSubmissionStatus('error');
       } finally {
         submitBtn.textContent = originalText;
@@ -215,6 +209,18 @@ export const Web3FormSection: React.FC<Web3FormSectionProps> = ({
 
           {/* Form with id="form" */}
           <form id="form" ref={formRef} className="space-y-3.5 bg-amber-50/70 p-4 rounded-2xl border border-amber-800/20">
+            {/* Hidden fields so FormData(form) includes student career quest achievements */}
+            <input type="hidden" name="student_name" value={player.name || 'Student'} />
+            <input type="hidden" name="major" value={player.major} />
+            <input type="hidden" name="career_path" value={careerPath} />
+            <input type="hidden" name="final_score" value={String(player.scores.totalScore)} />
+            <input type="hidden" name="english_score" value={String(player.scores.englishScore)} />
+            <input type="hidden" name="application_letter_score" value={String(player.scores.letterScore)} />
+            <input type="hidden" name="quiz_score" value={String(player.scores.quiz)} />
+            <input type="hidden" name="clues_completed" value={String(player.cluesFound.length)} />
+            <input type="hidden" name="final_decision" value={player.finalDecision || 'WORK'} />
+            <input type="hidden" name="game_title" value="Application Letter Adventure: Muhiba Career Quest" />
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label className="block font-pixel text-[10px] text-slate-700 uppercase mb-1">

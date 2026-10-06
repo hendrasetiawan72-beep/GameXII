@@ -13,6 +13,15 @@ interface MajorChallengeModalProps {
   alreadyCompleted?: boolean;
 }
 
+function shuffleArray<T>(array: T[]): T[] {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 export const MajorChallengeModal: React.FC<MajorChallengeModalProps> = ({
   major,
   playerName,
@@ -22,25 +31,88 @@ export const MajorChallengeModal: React.FC<MajorChallengeModalProps> = ({
 }) => {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
 
-  // Challenge 1: Skill Matching state
+  // Challenge 1: Skill Matching state with randomized choices
   const pairs = MAJOR_MATCHING_PAIRS[major];
+  const [shuffledSkills] = useState(() => shuffleArray(pairs));
+  const [shuffledRequirements] = useState(() => shuffleArray(pairs.map((p) => p.requirement)));
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
   const [matchedPairs, setMatchedPairs] = useState<Record<string, string>>({});
   const [c1Complete, setC1Complete] = useState(alreadyCompleted);
 
-  // Challenge 2 state
+  // Challenge 2 state with randomized choices
   const [c2SelectedOption, setC2SelectedOption] = useState<string | null>(null);
-  const [engineParts, setEngineParts] = useState<string[]>(['Body', 'Opening', 'Closing']);
-  const [cables, setCables] = useState<string[]>([
-    'Opening',
-    'Salutation',
-    'Complimentary Close',
-    'Body',
-    'Closing'
-  ]);
+  const [shuffledAklOptions] = useState(() =>
+    shuffleArray([
+      {
+        id: 'opt1',
+        en: 'I am writing to apply for the Junior Accounting Assistant position at Muhiba Bank Partner, as advertised on the school bulletin board.',
+        correct: true
+      },
+      {
+        id: 'opt2',
+        en: 'Hey bank guys! I need quick cash so please give me the accounting job today.',
+        correct: false
+      },
+      {
+        id: 'opt3',
+        en: 'I love playing video games with numbers so maybe your bank is fun.',
+        correct: false
+      }
+    ])
+  );
+
+  const [engineParts, setEngineParts] = useState<string[]>(() => {
+    const scrambled = [
+      ['Closing', 'Opening', 'Body'],
+      ['Body', 'Closing', 'Opening'],
+      ['Closing', 'Body', 'Opening']
+    ];
+    return scrambled[Math.floor(Math.random() * scrambled.length)];
+  });
+
+  const [cables, setCables] = useState<string[]>(() => {
+    const target = ['Salutation', 'Opening', 'Body', 'Closing', 'Complimentary Close'];
+    let scrambled = shuffleArray(target);
+    while (scrambled.every((val, idx) => val === target[idx])) {
+      scrambled = shuffleArray(target);
+    }
+    return scrambled;
+  });
+
   const [c2Complete, setC2Complete] = useState(alreadyCompleted);
 
-  // Challenge 3 state
+  // Challenge 3 state with randomized skills
+  const [shuffledSkillOptions] = useState(() => {
+    const raw =
+      major === 'AKL'
+        ? [
+            { text: 'Basic Accounting & Journaling', correct: true },
+            { text: 'Microsoft Excel Financial Formulas', correct: true },
+            { text: 'Motorcycle Valve Overhaul', correct: false },
+            { text: 'Financial Report Preparation', correct: true },
+            { text: 'Teamwork & Integrity', correct: true },
+            { text: 'Deep Frying Cooking Pan', correct: false }
+          ]
+        : major === 'OTOMOTIF'
+        ? [
+            { text: 'Wrench & Screwdriver Tool Mastery', correct: true },
+            { text: 'Engine Maintenance & Tune-Up', correct: true },
+            { text: 'Accounting Balance Sheet Audit', correct: false },
+            { text: 'Diagnostic Scanner Inspection', correct: true },
+            { text: 'Safety Procedures & Teamwork', correct: true },
+            { text: 'Cooking Fried Rice in Canteen', correct: false }
+          ]
+        : [
+            { text: 'Basic IP Addressing & Subnetting', correct: true },
+            { text: 'Network Troubleshooting & Ping Tests', correct: true },
+            { text: 'Car Engine Piston Repair', correct: false },
+            { text: 'LAN RJ45 Cabling & Crimping', correct: true },
+            { text: 'Client Communication & Teamwork', correct: true },
+            { text: 'Baking Pastry Dough', correct: false }
+          ];
+    return shuffleArray(raw);
+  });
+
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [c3Complete, setC3Complete] = useState(alreadyCompleted);
 
@@ -99,34 +171,6 @@ export const MajorChallengeModal: React.FC<MajorChallengeModalProps> = ({
     }
   };
 
-  const skillOptions =
-    major === 'AKL'
-      ? [
-          { text: 'Basic Accounting & Journaling', correct: true },
-          { text: 'Microsoft Excel Financial Formulas', correct: true },
-          { text: 'Motorcycle Valve Overhaul', correct: false },
-          { text: 'Financial Report Preparation', correct: true },
-          { text: 'Teamwork & Integrity', correct: true },
-          { text: 'Deep Frying Cooking Pan', correct: false }
-        ]
-      : major === 'OTOMOTIF'
-      ? [
-          { text: 'Wrench & Screwdriver Tool Mastery', correct: true },
-          { text: 'Engine Maintenance & Tune-Up', correct: true },
-          { text: 'Accounting Balance Sheet Audit', correct: false },
-          { text: 'Diagnostic Scanner Inspection', correct: true },
-          { text: 'Safety Procedures & Teamwork', correct: true },
-          { text: 'Cooking Fried Rice in Canteen', correct: false }
-        ]
-      : [
-          { text: 'Basic IP Addressing & Subnetting', correct: true },
-          { text: 'Network Troubleshooting & Ping Tests', correct: true },
-          { text: 'Car Engine Piston Repair', correct: false },
-          { text: 'LAN RJ45 Cabling & Crimping', correct: true },
-          { text: 'Client Communication & Teamwork', correct: true },
-          { text: 'Baking Pastry Dough', correct: false }
-        ];
-
   const toggleSkill = (text: string) => {
     sound.playClick();
     setSelectedSkills((prev) =>
@@ -135,9 +179,9 @@ export const MajorChallengeModal: React.FC<MajorChallengeModalProps> = ({
   };
 
   const verifySkills = () => {
-    const requiredCorrect = skillOptions.filter((o) => o.correct).map((o) => o.text);
+    const requiredCorrect = shuffledSkillOptions.filter((o) => o.correct).map((o) => o.text);
     const chosenIncorrect = selectedSkills.filter(
-      (s) => !skillOptions.find((o) => o.text === s && o.correct)
+      (s) => !shuffledSkillOptions.find((o) => o.text === s && o.correct)
     );
 
     if (
@@ -240,7 +284,7 @@ export const MajorChallengeModal: React.FC<MajorChallengeModalProps> = ({
                   <span className="font-pixel text-[10px] text-slate-800 font-bold block">
                     YOUR PRACTICAL SKILLS:
                   </span>
-                  {pairs.map((p) => {
+                  {shuffledSkills.map((p) => {
                     const isMatched = !!matchedPairs[p.skill];
                     const isSelected = selectedSkill === p.skill;
                     return (
@@ -262,18 +306,18 @@ export const MajorChallengeModal: React.FC<MajorChallengeModalProps> = ({
                   })}
                 </div>
 
-                {/* Right column */}
+                {/* Right column (shuffled independently) */}
                 <div className="space-y-2">
                   <span className="font-pixel text-[10px] text-slate-800 font-bold block">
                     JOB REQUIREMENTS:
                   </span>
-                  {pairs.map((p) => {
-                    const isMatched = Object.values(matchedPairs).includes(p.requirement);
+                  {shuffledRequirements.map((req, idx) => {
+                    const isMatched = Object.values(matchedPairs).includes(req);
                     return (
                       <button
-                        key={`req_${p.id}`}
+                        key={`req_${idx}`}
                         disabled={isMatched || !selectedSkill}
-                        onClick={() => handleMatchWithRequirement(p.requirement)}
+                        onClick={() => handleMatchWithRequirement(req)}
                         className={`w-full text-left p-3 rounded-xl border-2 text-xs transition-all ${
                           isMatched
                             ? 'bg-emerald-100 border-emerald-600 text-emerald-900'
@@ -282,7 +326,7 @@ export const MajorChallengeModal: React.FC<MajorChallengeModalProps> = ({
                             : 'bg-slate-50 border-slate-300 opacity-60'
                         }`}
                       >
-                        <p className="font-semibold">{p.requirement}</p>
+                        <p className="font-semibold">{req}</p>
                       </button>
                     );
                   })}
@@ -318,23 +362,7 @@ export const MajorChallengeModal: React.FC<MajorChallengeModalProps> = ({
                   </div>
 
                   <div className="space-y-2.5">
-                    {[
-                      {
-                        id: 'opt1',
-                        en: 'I am writing to apply for the Junior Accounting Assistant position at Muhiba Bank Partner, as advertised on the school bulletin board.',
-                        correct: true
-                      },
-                      {
-                        id: 'opt2',
-                        en: 'Hey bank guys! I need quick cash so please give me the accounting job today.',
-                        correct: false
-                      },
-                      {
-                        id: 'opt3',
-                        en: 'I love playing video games with numbers so maybe your bank is fun.',
-                        correct: false
-                      }
-                    ].map((opt) => (
+                    {shuffledAklOptions.map((opt) => (
                       <div
                         key={opt.id}
                         onClick={() => {
@@ -496,7 +524,7 @@ export const MajorChallengeModal: React.FC<MajorChallengeModalProps> = ({
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {skillOptions.map((opt, idx) => {
+                {shuffledSkillOptions.map((opt, idx) => {
                   const isChecked = selectedSkills.includes(opt.text);
                   return (
                     <button
