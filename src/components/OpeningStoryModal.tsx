@@ -67,22 +67,22 @@ export const OpeningStoryModal: React.FC<OpeningStoryModalProps> = ({
               AFTERNOON AT BAWANG
             </div>
 
-            {/* Three Chibi Students - Larger & Expressive */}
+            {/* Three Chibi Students - Extra Large & Expressive */}
             <div className="flex items-end justify-center gap-7 mt-3 mb-2">
               <div className="flex flex-col items-center animate-npc-breathe" style={{ animationDelay: '0s' }}>
-                <PlayerPixelSprite gender="boy" size={64} />
+                <PlayerPixelSprite gender="boy" size={74} isExcited />
                 <span className="font-pixel text-[8px] bg-slate-900 text-white px-2 py-0.5 rounded-md mt-1 border border-slate-700 shadow-xs">
                   Raka
                 </span>
               </div>
               <div className="flex flex-col items-center animate-npc-breathe" style={{ animationDelay: '0.4s' }}>
-                <PlayerPixelSprite gender="girl_hijab" size={64} />
+                <PlayerPixelSprite gender="girl_hijab" size={74} isExcited />
                 <span className="font-pixel text-[8px] bg-slate-900 text-white px-2 py-0.5 rounded-md mt-1 border border-slate-700 shadow-xs">
                   Sinta
                 </span>
               </div>
               <div className="flex flex-col items-center animate-npc-breathe" style={{ animationDelay: '0.8s' }}>
-                <PlayerPixelSprite gender="boy" size={64} />
+                <PlayerPixelSprite gender="boy" size={74} isExcited />
                 <span className="font-pixel text-[8px] bg-slate-900 text-white px-2 py-0.5 rounded-md mt-1 border border-slate-700 shadow-xs">
                   Dimas
                 </span>

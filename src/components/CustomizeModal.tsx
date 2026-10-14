@@ -17,6 +17,8 @@ export const CustomizeModal: React.FC<CustomizeModalProps> = ({
 }) => {
   const [name, setName] = useState(initialName);
   const [gender, setGender] = useState<Gender>(initialGender);
+  const [previewDirection, setPreviewDirection] = useState<'down' | 'right' | 'up'>('down');
+  const [testMoving, setTestMoving] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,11 +44,53 @@ export const CustomizeModal: React.FC<CustomizeModalProps> = ({
         </div>
 
         <form onSubmit={handleSubmit} className="p-5 sm:p-6 space-y-5">
-          {/* Sprite Preview Box */}
-          <div className="flex flex-col items-center justify-center p-4 bg-gradient-to-b from-amber-100 to-sky-100 border-2 border-slate-900 rounded-2xl shadow-[2px_2px_0px_0px_#0F172A]">
-            <div className="p-3 bg-white/80 border border-slate-300 rounded-full shadow-inner mb-2">
-              <PlayerPixelSprite gender={gender} size={64} isMoving={false} />
+          {/* Sprite Preview Box - Large 84px with Multi-Angle Previews */}
+          <div className="flex flex-col items-center justify-center p-4 bg-gradient-to-b from-amber-100 via-sky-50 to-sky-100 border-2 border-slate-900 rounded-2xl shadow-[2px_2px_0px_0px_#0F172A]">
+            <div className="p-4 bg-white/90 border-2 border-slate-900 rounded-3xl shadow-sm mb-2 relative flex items-center justify-center">
+              <PlayerPixelSprite
+                gender={gender}
+                direction={previewDirection}
+                size={84}
+                isMoving={testMoving}
+                isExcited={!testMoving}
+              />
             </div>
+
+            {/* Angle & Walk Previews */}
+            <div className="flex items-center gap-1.5 mb-2.5">
+              {(['down', 'right', 'up'] as const).map((dir) => (
+                <button
+                  key={dir}
+                  type="button"
+                  onClick={() => {
+                    sound.playClick();
+                    setPreviewDirection(dir);
+                  }}
+                  className={`px-2 py-0.5 rounded text-[8px] font-pixel border border-slate-900 transition-all ${
+                    previewDirection === dir
+                      ? 'bg-amber-400 text-slate-900 font-bold shadow-xs'
+                      : 'bg-white text-slate-700 hover:bg-amber-50'
+                  }`}
+                >
+                  {dir === 'down' ? 'Depan' : dir === 'right' ? 'Samping' : 'Belakang'}
+                </button>
+              ))}
+              <button
+                type="button"
+                onClick={() => {
+                  sound.playClick();
+                  setTestMoving(!testMoving);
+                }}
+                className={`px-2 py-0.5 rounded text-[8px] font-pixel border border-slate-900 transition-all ${
+                  testMoving
+                    ? 'bg-emerald-400 text-slate-900 font-bold shadow-xs'
+                    : 'bg-white text-slate-700 hover:bg-emerald-50'
+                }`}
+              >
+                {testMoving ? '🏃 Gerak' : '🚶 Diam'}
+              </button>
+            </div>
+
             <p className="font-pixel text-xs text-slate-900 font-bold">
               {name || 'Student Name'}
             </p>

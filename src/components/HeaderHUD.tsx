@@ -1,6 +1,7 @@
 import React from 'react';
-import { Major, DayNumber } from '../types/game';
+import { Major, DayNumber, Gender } from '../types/game';
 import { Volume2, VolumeX, Music, Award, HelpCircle } from 'lucide-react';
+import { PlayerPixelSprite } from './PixelSprites';
 import { sound } from '../utils/audio';
 
 interface HeaderHUDProps {
@@ -8,6 +9,7 @@ interface HeaderHUDProps {
   gameTitle: string;
   day: DayNumber;
   playerName: string;
+  playerGender?: Gender;
   major: Major;
   objectiveEn: string;
   cluesCount: number;
@@ -22,6 +24,7 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
   gameTitle,
   day,
   playerName,
+  playerGender = 'boy',
   major,
   objectiveEn,
   cluesCount,
@@ -80,10 +83,12 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
             </div>
 
             <div className="flex items-center gap-2 sm:gap-3 text-xs">
-              {/* Player Name */}
-              <div className="hidden sm:flex items-center gap-1 font-pixel text-[10px] text-slate-700">
-                <span className="text-slate-400">STUDENT:</span>
-                <span className="font-bold text-slate-900 max-w-[90px] truncate">{playerName || 'Student'}</span>
+              {/* Player Name & Mini Avatar */}
+              <div className="hidden sm:flex items-center gap-1.5 bg-amber-50 px-2 py-0.5 rounded-lg border border-slate-900 shadow-[1px_1px_0px_0px_#000]">
+                <div className="w-5 h-5 flex items-center justify-center -my-1 overflow-hidden shrink-0">
+                  <PlayerPixelSprite gender={playerGender} size={28} isMoving={false} major={major} />
+                </div>
+                <span className="font-pixel text-[10px] font-bold text-slate-900 max-w-[100px] truncate">{playerName || 'Student'}</span>
               </div>
 
               {/* Clues Pill */}

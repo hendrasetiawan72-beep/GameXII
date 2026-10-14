@@ -221,6 +221,7 @@ export default function App() {
           gameTitle="Muhiba Career Quest"
           day={player.currentDay}
           playerName={player.name}
+          playerGender={player.gender}
           major={player.major}
           objectiveEn={getObjective(player.currentDay)}
           cluesCount={player.cluesFound.length}

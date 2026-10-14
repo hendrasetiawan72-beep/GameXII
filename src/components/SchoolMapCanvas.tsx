@@ -22,6 +22,7 @@ interface SchoolMapProps {
 
 export const SchoolMapCanvas: React.FC<SchoolMapProps> = ({
   playerGender,
+  playerName = 'Student',
   playerMajor,
   currentDay,
   cluesFound,
@@ -37,6 +38,7 @@ export const SchoolMapCanvas: React.FC<SchoolMapProps> = ({
   const [posY, setPosY] = useState(62);
   const [direction, setDirection] = useState<'down' | 'up' | 'left' | 'right'>('down');
   const [isMoving, setIsMoving] = useState(false);
+  const [clickTarget, setClickTarget] = useState<{ x: number; y: number; id: number } | null>(null);
   const [nearbyNpc, setNearbyNpc] = useState<NPC | null>(null);
   const [nearbyClue, setNearbyClue] = useState<ClueItem | null>(null);
   const [nearbyObject, setNearbyObject] = useState<{
@@ -252,6 +254,7 @@ export const SchoolMapCanvas: React.FC<SchoolMapProps> = ({
     const clickY = ((e.clientY - rect.top) / rect.height) * 100;
 
     targetPosRef.current = { x: clickX, y: clickY };
+    setClickTarget({ x: clickX, y: clickY, id: Date.now() });
 
     const dx = clickX - posX;
     const dy = clickY - posY;
@@ -483,24 +486,110 @@ export const SchoolMapCanvas: React.FC<SchoolMapProps> = ({
           );
         })}
 
-        {/* Player Character - Scaled to 66px with matching presence */}
+        {/* Tap/Click-To-Move Visual Target Ping */}
+        {clickTarget && (
+          <div
+            key={clickTarget.id}
+            style={{
+              left: `${clickTarget.x}%`,
+              top: `${clickTarget.y}%`
+            }}
+            className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10"
+          >
+            <div className="w-9 h-9 rounded-full border-2 border-amber-400 bg-amber-400/25 animate-click-ping flex items-center justify-center">
+              <div className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-sm" />
+            </div>
+          </div>
+        )}
+
+        {/* Player Character - Scaled to 76px with High-Definition Presence & Intuitive Dynamic Effects */}
         <div
           style={{
             left: `${posX}%`,
             top: `${posY}%`
           }}
-          className="absolute -translate-x-1/2 -translate-y-1/2 z-20 transition-all duration-100 ease-linear pointer-events-none"
+          className="absolute -translate-x-1/2 -translate-y-1/2 z-25 transition-all duration-100 ease-linear pointer-events-none flex flex-col items-center"
         >
-          <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900/90 text-amber-300 font-pixel text-[8px] px-2.5 py-0.5 rounded-md whitespace-nowrap border-2 border-amber-400 shadow-[2px_2px_0px_0px_#0F172A] flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            {playerMajor}
+          {/* Overhead Dynamic Intuitive Interaction / Status Badge */}
+          {nearbyNpc ? (
+            <div className="absolute -top-11 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-300 text-slate-950 font-pixel text-[8px] sm:text-[9px] px-2.5 py-1 rounded-full border-2 border-slate-900 shadow-[2px_2px_0px_0px_#0F172A] whitespace-nowrap flex items-center gap-1.5 animate-bounce z-30 font-bold">
+              <span className="text-xs">💬</span>
+              <span>TALK TO {nearbyNpc.name.toUpperCase().split(' ')[0]}</span>
+              <span className="bg-slate-900 text-amber-300 px-1 py-0.2 rounded text-[7px] border border-amber-400">
+                [E]
+              </span>
+            </div>
+          ) : nearbyClue ? (
+            <div className="absolute -top-11 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-300 text-slate-950 font-pixel text-[8px] sm:text-[9px] px-2.5 py-1 rounded-full border-2 border-slate-900 shadow-[2px_2px_0px_0px_#0F172A] whitespace-nowrap flex items-center gap-1.5 animate-bounce z-30 font-bold">
+              <span className="text-xs">🔍</span>
+              <span>INSPECT CLUE!</span>
+              <span className="bg-slate-900 text-amber-300 px-1 py-0.2 rounded text-[7px] border border-amber-400">
+                [E]
+              </span>
+            </div>
+          ) : nearbyObject ? (
+            <div className="absolute -top-11 left-1/2 -translate-x-1/2 bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-400 text-slate-950 font-pixel text-[8px] sm:text-[9px] px-2.5 py-1 rounded-full border-2 border-slate-900 shadow-[2px_2px_0px_0px_#0F172A] whitespace-nowrap flex items-center gap-1.5 animate-bounce z-30 font-bold">
+              <span className="text-xs">⚡</span>
+              <span>{nearbyObject.label.toUpperCase()}</span>
+              <span className="bg-slate-900 text-white px-1 py-0.2 rounded text-[7px] border border-sky-300">
+                [E]
+              </span>
+            </div>
+          ) : (
+            <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900/90 text-amber-300 font-pixel text-[8px] sm:text-[9px] px-2.5 py-0.5 rounded-lg whitespace-nowrap border-2 border-amber-400 shadow-[2px_2px_0px_0px_#0F172A] flex items-center gap-1.5 z-20">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-white font-bold">{playerName || 'Student'}</span>
+              <span className="text-amber-400">({playerMajor})</span>
+            </div>
+          )}
+
+          {/* Player Sprite (Enlarged to 76px, Rich Details, Major Accessory & Dynamic Emotions) */}
+          <div className="relative">
+            <PlayerPixelSprite
+              gender={playerGender}
+              direction={direction}
+              isMoving={isMoving}
+              size={76}
+              major={playerMajor}
+              isExcited={!!(nearbyNpc || nearbyClue || nearbyObject)}
+            />
+
+            {/* Footstep Dust Puffs when Running/Walking */}
+            {isMoving && (
+              <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 pointer-events-none flex items-center justify-center opacity-85 z-10">
+                <span className="text-[11px] animate-dust-puff">💨</span>
+              </div>
+            )}
           </div>
-          <PlayerPixelSprite
-            gender={playerGender}
-            direction={direction}
-            isMoving={isMoving}
-            size={66}
-          />
+
+          {/* Intuitive Hero Ground Ring & Direction Beacon Compass Arrow */}
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 pointer-events-none flex flex-col items-center">
+            {/* Soft Glowing Hero Beacon Ring */}
+            <div
+              className={`w-14 h-4 rounded-full border-2 transition-all ${
+                isMoving
+                  ? 'border-amber-400 bg-amber-400/35 animate-hero-beacon'
+                  : 'border-amber-400/60 bg-amber-300/20'
+              } shadow-sm`}
+            />
+
+            {/* Direction Compass Arrow Indicator */}
+            <div
+              className="absolute -bottom-1.5 text-amber-500 font-pixel text-[11px] leading-none transition-transform duration-150 drop-shadow-xs"
+              style={{
+                transform:
+                  direction === 'up'
+                    ? 'rotate(0deg)'
+                    : direction === 'right'
+                    ? 'rotate(90deg)'
+                    : direction === 'down'
+                    ? 'rotate(180deg)'
+                    : 'rotate(270deg)'
+              }}
+            >
+              ▲
+            </div>
+          </div>
         </div>
 
         {/* Floating Natural Interaction Hint (Bottom Floating Overlay) */}
