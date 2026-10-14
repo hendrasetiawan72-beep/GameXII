@@ -62,7 +62,7 @@ export const SchoolMapCanvas: React.FC<SchoolMapProps> = ({
       let foundNpc: NPC | null = null;
       for (const npc of currentNpcs) {
         const dist = Math.hypot(npc.x - x, npc.y - y);
-        if (dist < 9) {
+        if (dist < 13) {
           foundNpc = npc;
           break;
         }
@@ -357,10 +357,27 @@ export const SchoolMapCanvas: React.FC<SchoolMapProps> = ({
           <div className="w-5 h-2 bg-slate-800 rounded-sm mt-4 shadow-sm" />
         </div>
 
-        {/* NPCs Standing on the Map */}
-        {currentNpcs.map((npc) => {
+        {/* NPCs Standing on the Map - Large, Expressive & Highly Interactive */}
+        {currentNpcs.map((npc, idx) => {
           const isNearby = nearbyNpc?.id === npc.id;
           const isActive = activeNpcId === npc.id;
+
+          // Dynamically turn towards the player (classic interactive RPG mechanic)
+          const facing = posX < npc.x ? 'left' : 'right';
+
+          // Personalized role icon & greeting preview
+          const roleBadge =
+            npc.avatarType === 'teacher_akl'
+              ? { icon: '📊', color: 'bg-emerald-100 text-emerald-900 border-emerald-500', quote: 'Mari cek pembukuan & laporan keuangan!' }
+              : npc.avatarType === 'teacher_auto'
+              ? { icon: '🔧', color: 'bg-orange-100 text-orange-900 border-orange-500', quote: 'Cek mesin dan peralatan bengkel sekarang!' }
+              : npc.avatarType === 'teacher_tjkt'
+              ? { icon: '💻', color: 'bg-sky-100 text-sky-900 border-sky-500', quote: 'Setup konfigurasi jaringan & server stabil!' }
+              : npc.avatarType === 'coordinator'
+              ? { icon: '💼', color: 'bg-slate-100 text-slate-900 border-slate-600', quote: 'Siapkan portfolio & kesiapan magang industri!' }
+              : npc.avatarType === 'counselor'
+              ? { icon: '📋', color: 'bg-amber-100 text-amber-900 border-amber-600', quote: 'Konsultasi karir & CV terbaikmu di sini!' }
+              : { icon: '👋', color: 'bg-yellow-100 text-yellow-900 border-yellow-500', quote: 'Halo teman! Semangat quest magangmu!' };
 
           return (
             <div
@@ -374,23 +391,99 @@ export const SchoolMapCanvas: React.FC<SchoolMapProps> = ({
                 left: `${npc.x}%`,
                 top: `${npc.y}%`
               }}
-              className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer z-10 transition-transform active:scale-95"
+              className="group absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer z-10 transition-all duration-300 hover:scale-120 hover:-translate-y-3 active:scale-95"
             >
-              <div
-                className={`absolute -top-7 left-1/2 -translate-x-1/2 bg-white border border-slate-900 rounded-lg px-2 py-0.5 shadow-[1px_1px_0px_0px_#000] flex items-center gap-1 whitespace-nowrap z-20 ${
-                  isNearby || isActive ? 'scale-110 bg-amber-200 animate-bounce' : 'opacity-85'
-                }`}
-              >
-                <MessageCircle className="w-2.5 h-2.5 text-slate-800" />
-                <span className="font-pixel text-[8px] text-slate-900">{npc.name}</span>
+              {/* Dynamic Ground Shadow & Pulsing Golden Aura */}
+              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-16 h-4 bg-slate-900/30 rounded-full blur-[1px] pointer-events-none group-hover:bg-slate-900/50 transition-colors" />
+
+              {(isNearby || isActive) && (
+                <>
+                  {/* Expanding golden ping wave */}
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-6 bg-amber-400/50 rounded-full blur-[2px] animate-ping pointer-events-none" />
+                  {/* Glowing ground magic aura disk */}
+                  <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-18 h-5 bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 rounded-full border-2 border-amber-500 shadow-md shadow-amber-400/60 animate-pulse-ring pointer-events-none" />
+                  
+                  {/* Floating magical sparkles */}
+                  <div
+                    style={{ animationDelay: '0.2s' }}
+                    className="absolute -top-12 -left-3 text-[14px] pointer-events-none animate-float-particle select-none"
+                  >
+                    ✨
+                  </div>
+                  <div
+                    style={{ animationDelay: '0.8s' }}
+                    className="absolute -top-14 -right-2 text-[12px] pointer-events-none animate-float-particle select-none"
+                  >
+                    ⭐
+                  </div>
+                </>
+              )}
+
+              {/* Overhead Animated Interaction Callout / Name Badge */}
+              {isNearby || isActive ? (
+                <div className="absolute -top-13 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400 border-2 border-slate-900 rounded-xl px-3 py-1 shadow-[3px_3px_0px_0px_#0F172A] flex items-center gap-1.5 whitespace-nowrap z-30 animate-bounce scale-110">
+                  <span className="text-[13px]">{roleBadge.icon}</span>
+                  <span className="font-pixel text-[9px] text-slate-900 font-bold tracking-tight">
+                    TALK TO {npc.name.toUpperCase()}!
+                  </span>
+                  <span className="bg-slate-900 text-amber-300 font-pixel text-[7px] px-1 py-0.5 rounded ml-0.5">
+                    [E]
+                  </span>
+                </div>
+              ) : (
+                <>
+                  {/* Default Floating Name Tag with Role Icon */}
+                  <div className="absolute -top-9 left-1/2 -translate-x-1/2 bg-white/95 group-hover:bg-amber-300 border-2 border-slate-900 rounded-lg px-2 py-0.5 shadow-[2px_2px_0px_0px_#0F172A] flex items-center gap-1 whitespace-nowrap z-20 group-hover:scale-110 transition-all">
+                    <span className="text-[10px]">{roleBadge.icon}</span>
+                    <span className="font-pixel text-[9px] text-slate-900 font-bold">{npc.name}</span>
+                  </div>
+                  {/* Animated Attention Emote Bubble */}
+                  <div className="absolute -top-14 -right-2 bg-gradient-to-r from-amber-400 to-orange-400 text-slate-900 border-2 border-slate-900 font-pixel text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow-[1px_1px_0px_0px_#000] animate-bounce">
+                    💬
+                  </div>
+                </>
+              )}
+
+              {/* Interactive Hover Speech Balloon */}
+              <div className="opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 bg-slate-900/95 text-amber-200 border-2 border-amber-400 rounded-xl px-3 py-1.5 whitespace-nowrap shadow-xl z-40 flex flex-col items-center">
+                <span className="font-sans text-[11px] font-bold text-white flex items-center gap-1">
+                  {roleBadge.icon} {npc.name} ({npc.role})
+                </span>
+                <span className="font-sans text-[10px] text-amber-300 italic">
+                  "{roleBadge.quote}"
+                </span>
+                <span className="font-pixel text-[7px] text-amber-400 mt-0.5">
+                  ▶ Klik untuk mulai dialog
+                </span>
+                {/* Arrow */}
+                <div className="w-2 h-2 bg-slate-900 border-r-2 border-b-2 border-amber-400 transform rotate-45 -mb-2.5 mt-0.5" />
               </div>
 
-              <NPCPixelSprite avatarType={npc.avatarType} size={38} />
+              {/* Extra-Large Animated NPC Sprite (Size 72) with Lively Movements */}
+              <div
+                style={{
+                  animationDelay: `${(idx * 0.4) % 1.6}s`
+                }}
+                className={`relative transform transition-transform ${
+                  isNearby || isActive
+                    ? 'animate-npc-jump'
+                    : 'animate-npc-breathe'
+                }`}
+              >
+                <div className="animate-npc-sway">
+                  <NPCPixelSprite
+                    avatarType={npc.avatarType}
+                    size={72}
+                    facing={facing}
+                    isExcited={isNearby || isActive}
+                  />
+                </div>
+              </div>
             </div>
           );
         })}
 
-        {/* Player Character */}
+        {/* Player Character - Scaled to 66px with matching presence */}
         <div
           style={{
             left: `${posX}%`,
@@ -398,14 +491,15 @@ export const SchoolMapCanvas: React.FC<SchoolMapProps> = ({
           }}
           className="absolute -translate-x-1/2 -translate-y-1/2 z-20 transition-all duration-100 ease-linear pointer-events-none"
         >
-          <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-slate-900/90 text-white font-pixel text-[8px] px-2 py-0.5 rounded-md whitespace-nowrap border border-amber-300 shadow-[1px_1px_0px_0px_#000]">
+          <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900/90 text-amber-300 font-pixel text-[8px] px-2.5 py-0.5 rounded-md whitespace-nowrap border-2 border-amber-400 shadow-[2px_2px_0px_0px_#0F172A] flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             {playerMajor}
           </div>
           <PlayerPixelSprite
             gender={playerGender}
             direction={direction}
             isMoving={isMoving}
-            size={42}
+            size={66}
           />
         </div>
 

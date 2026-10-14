@@ -76,17 +76,19 @@ export const DialogueModal: React.FC<DialogueModalProps> = ({
         {/* Dialogue Body */}
         <div className="p-4 sm:p-5 space-y-3">
           <div className="flex items-start gap-3.5">
-            {/* Avatar Portrait */}
-            <div className="shrink-0 p-2 bg-amber-100 border-2 border-slate-900 rounded-2xl shadow-[2px_2px_0px_0px_#0F172A] flex flex-col items-center min-w-[70px]">
-              {isPlayer ? (
-                <PlayerPixelSprite gender={playerGender} size={48} />
-              ) : (
-                <NPCPixelSprite avatarType={npc.avatarType} size={48} />
-              )}
-              <span className="font-pixel text-[8px] text-slate-800 mt-1 font-bold text-center">
+            {/* Avatar Portrait - Extra-Large, Expressive & Animated */}
+            <div className="shrink-0 p-3 bg-gradient-to-b from-amber-100 via-amber-200 to-amber-300 border-2 border-slate-900 rounded-2xl shadow-[4px_4px_0px_0px_#0F172A] flex flex-col items-center min-w-[100px]">
+              <div className="transform transition-transform hover:scale-105 active:scale-95 animate-npc-breathe drop-shadow-md">
+                {isPlayer ? (
+                  <PlayerPixelSprite gender={playerGender} size={84} />
+                ) : (
+                  <NPCPixelSprite avatarType={npc.avatarType} size={84} isExcited={true} />
+                )}
+              </div>
+              <span className="font-pixel text-[10px] text-slate-900 mt-2 font-bold text-center tracking-tight">
                 {currentLine.speaker}
               </span>
-              <span className="text-[9px] text-slate-500 font-semibold mt-0.5">
+              <span className="text-[10px] text-slate-800 font-semibold mt-1 bg-white/90 px-2 py-0.5 rounded-full border border-slate-800/40 shadow-xs">
                 {speakerGender === 'female' ? '♀ Female' : '♂ Deep Voice'}
               </span>
             </div>

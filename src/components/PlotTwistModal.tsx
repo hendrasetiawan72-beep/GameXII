@@ -105,12 +105,14 @@ export const PlotTwistModal: React.FC<PlotTwistModalProps> = ({
             <div className="p-5 sm:p-6 space-y-4">
               {/* Mr. Hendra Avatar Dialogue */}
               <div className="flex items-start gap-4 bg-amber-50 border-2 border-slate-900 rounded-2xl p-4 shadow-[3px_3px_0px_0px_#0F172A] relative">
-                <div className="shrink-0 flex flex-col items-center">
-                  <NPCPixelSprite avatarType="coordinator" size={54} />
-                  <span className="font-pixel text-[9px] text-slate-800 mt-1 font-bold">
+                <div className="shrink-0 flex flex-col items-center bg-amber-100/80 p-2.5 rounded-xl border border-slate-900 shadow-xs">
+                  <div className="animate-npc-breathe">
+                    <NPCPixelSprite avatarType="coordinator" size={72} isExcited={true} />
+                  </div>
+                  <span className="font-pixel text-[9px] text-slate-800 mt-1.5 font-bold">
                     Mr. Hendra
                   </span>
-                  <span className="text-[9px] text-slate-500 font-semibold mt-0.5">
+                  <span className="text-[9px] text-slate-600 font-semibold mt-0.5 bg-white/80 px-1.5 py-0.2 rounded border border-slate-800/20">
                     ♂ Deep Voice
                   </span>
                 </div>

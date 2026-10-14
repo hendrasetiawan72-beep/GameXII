@@ -67,23 +67,23 @@ export const OpeningStoryModal: React.FC<OpeningStoryModalProps> = ({
               AFTERNOON AT BAWANG
             </div>
 
-            {/* Three Chibi Students */}
-            <div className="flex items-end justify-center gap-6 mt-4 mb-2">
-              <div className="flex flex-col items-center">
-                <PlayerPixelSprite gender="boy" size={48} />
-                <span className="font-pixel text-[8px] bg-slate-900 text-white px-1.5 py-0.5 rounded mt-1">
+            {/* Three Chibi Students - Larger & Expressive */}
+            <div className="flex items-end justify-center gap-7 mt-3 mb-2">
+              <div className="flex flex-col items-center animate-npc-breathe" style={{ animationDelay: '0s' }}>
+                <PlayerPixelSprite gender="boy" size={64} />
+                <span className="font-pixel text-[8px] bg-slate-900 text-white px-2 py-0.5 rounded-md mt-1 border border-slate-700 shadow-xs">
                   Raka
                 </span>
               </div>
-              <div className="flex flex-col items-center">
-                <PlayerPixelSprite gender="girl_hijab" size={48} />
-                <span className="font-pixel text-[8px] bg-slate-900 text-white px-1.5 py-0.5 rounded mt-1">
+              <div className="flex flex-col items-center animate-npc-breathe" style={{ animationDelay: '0.4s' }}>
+                <PlayerPixelSprite gender="girl_hijab" size={64} />
+                <span className="font-pixel text-[8px] bg-slate-900 text-white px-2 py-0.5 rounded-md mt-1 border border-slate-700 shadow-xs">
                   Sinta
                 </span>
               </div>
-              <div className="flex flex-col items-center">
-                <PlayerPixelSprite gender="boy" size={48} />
-                <span className="font-pixel text-[8px] bg-slate-900 text-white px-1.5 py-0.5 rounded mt-1">
+              <div className="flex flex-col items-center animate-npc-breathe" style={{ animationDelay: '0.8s' }}>
+                <PlayerPixelSprite gender="boy" size={64} />
+                <span className="font-pixel text-[8px] bg-slate-900 text-white px-2 py-0.5 rounded-md mt-1 border border-slate-700 shadow-xs">
                   Dimas
                 </span>
               </div>

@@ -872,7 +872,7 @@ export const MAJOR_MATCHING_PAIRS: Record<Major, MatchingPair[]> = {
   ]
 };
 
-// Daily Quizzes (Clean CEFR A2-B1 English Only)
+// Daily Quizzes (Clean CEFR A2-B1 English Only) - Scrambled Answers
 export const DAILY_QUIZZES: Record<DayNumber, QuizQuestion[]> = {
   1: [
     {
@@ -891,12 +891,12 @@ export const DAILY_QUIZZES: Record<DayNumber, QuizQuestion[]> = {
       id: 'q1_2',
       questionEn: 'Which expression is used to give a polite personal opinion?',
       options: [
-        { key: 'A', text: 'In my opinion, both work and college are great paths.' },
-        { key: 'B', text: 'Shut up and listen to me now!' },
-        { key: 'C', text: 'I do not care what anyone thinks.' },
-        { key: 'D', text: 'Give me the correct answer immediately.' }
+        { key: 'A', text: 'Shut up and listen to me now!' },
+        { key: 'B', text: 'I do not care what anyone thinks.' },
+        { key: 'C', text: 'Give me the correct answer immediately.' },
+        { key: 'D', text: 'In my opinion, both work and college are great paths.' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'D',
       explanationEn: '"In my opinion..." is a standard polite expression to state your thoughts constructively.'
     },
     {
@@ -915,12 +915,12 @@ export const DAILY_QUIZZES: Record<DayNumber, QuizQuestion[]> = {
       id: 'q1_4',
       questionEn: 'Which sentence correctly uses "I think..." to express an idea?',
       options: [
-        { key: 'A', text: 'I think we should check the career information board.' },
-        { key: 'B', text: 'I thinking go to school yesterday.' },
+        { key: 'A', text: 'I thinking go to school yesterday.' },
+        { key: 'B', text: 'I think we should check the career information board.' },
         { key: 'C', text: 'Think I is very hungry.' },
         { key: 'D', text: 'Are you think tomorrow morning?' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'B',
       explanationEn: '"I think we should..." expresses a gentle, collaborative suggestion.'
     },
     {
@@ -928,11 +928,11 @@ export const DAILY_QUIZZES: Record<DayNumber, QuizQuestion[]> = {
       questionEn: 'Where can students find career guidance and counseling at school?',
       options: [
         { key: 'A', text: 'The parking lot behind the fence' },
-        { key: 'B', text: 'Guidance and Counseling Room (Ruang BK)' },
-        { key: 'C', text: 'The school football field goalpost' },
+        { key: 'B', text: 'The school football field goalpost' },
+        { key: 'C', text: 'Guidance and Counseling Room (Ruang BK)' },
         { key: 'D', text: 'Underneath the cafeteria bench' }
       ],
-      correctAnswer: 'B',
+      correctAnswer: 'C',
       explanationEn: 'The Guidance Counseling Room (Ruang BK) is dedicated to helping students plan their future.'
     }
   ],
@@ -941,12 +941,12 @@ export const DAILY_QUIZZES: Record<DayNumber, QuizQuestion[]> = {
       id: 'q2_1',
       questionEn: 'Where is job vacancy information usually posted in a vocational school?',
       options: [
-        { key: 'A', text: 'Announcement board and official career center (BKK)' },
-        { key: 'B', text: 'On the roof of the water tank' },
-        { key: 'C', text: 'Written in small letters on cafeteria spoons' },
+        { key: 'A', text: 'On the roof of the water tank' },
+        { key: 'B', text: 'Written in small letters on cafeteria spoons' },
+        { key: 'C', text: 'Announcement board and official career center (BKK)' },
         { key: 'D', text: 'Hidden inside an empty football' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'C',
       explanationEn: 'Job boards and career centers (BKK) display official vacancies and recruitment flyers.'
     },
     {
@@ -966,35 +966,35 @@ export const DAILY_QUIZZES: Record<DayNumber, QuizQuestion[]> = {
       questionEn: 'If a vacancy says "Fresh graduates welcome", what does it mean?',
       options: [
         { key: 'A', text: 'Only people with 20 years of experience can apply' },
-        { key: 'B', text: 'Students who just graduated from school can apply' },
-        { key: 'C', text: 'Applicants must bring fresh fruit to the office' },
-        { key: 'D', text: 'Only teachers may apply' }
+        { key: 'B', text: 'Applicants must bring fresh fruit to the office' },
+        { key: 'C', text: 'Only teachers may apply' },
+        { key: 'D', text: 'Students who just graduated from school can apply' }
       ],
-      correctAnswer: 'B',
+      correctAnswer: 'D',
       explanationEn: '"Fresh graduates" refers to new graduates who are starting their professional career.'
     },
     {
       id: 'q2_4',
       questionEn: 'Which of the following is usually NOT found on a professional job brochure?',
       options: [
-        { key: 'A', text: 'Company name and open position' },
-        { key: 'B', text: 'Required skills and qualifications' },
-        { key: 'C', text: 'Application deadline and contact email' },
-        { key: 'D', text: 'The principal’s favorite cartoon movie' }
+        { key: 'A', text: 'The principal’s favorite cartoon movie' },
+        { key: 'B', text: 'Company name and open position' },
+        { key: 'C', text: 'Required skills and qualifications' },
+        { key: 'D', text: 'Application deadline and contact email' }
       ],
-      correctAnswer: 'D',
+      correctAnswer: 'A',
       explanationEn: 'Job brochures focus strictly on professional job details, requirements, deadline, and contact instructions.'
     },
     {
       id: 'q2_5',
       questionEn: 'What instruction is commonly given to candidates interested in the job?',
       options: [
-        { key: 'A', text: '"Please send your application letter and resume."' },
-        { key: 'B', text: '"Please shout your name outside the building."' },
+        { key: 'A', text: '"Please shout your name outside the building."' },
+        { key: 'B', text: '"Please send your application letter and resume."' },
         { key: 'C', text: '"Wait 10 years before doing anything."' },
         { key: 'D', text: '"Delete all your school certificates."' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'B',
       explanationEn: 'Employers instruct applicants to submit a formal application letter and CV/resume.'
     }
   ],
@@ -1016,47 +1016,47 @@ export const DAILY_QUIZZES: Record<DayNumber, QuizQuestion[]> = {
       questionEn: 'Which greeting (salutation) is most appropriate for a formal job application?',
       options: [
         { key: 'A', text: 'Hey bro!' },
-        { key: 'B', text: 'What’s up dude?' },
-        { key: 'C', text: 'Dear Hiring Manager,' },
+        { key: 'B', text: 'Dear Hiring Manager,' },
+        { key: 'C', text: 'What’s up dude?' },
         { key: 'D', text: 'Hi my good buddy,' }
       ],
-      correctAnswer: 'C',
+      correctAnswer: 'B',
       explanationEn: '"Dear Hiring Manager," or "Dear Mr./Ms. [Name]," is respectful and professional.'
     },
     {
       id: 'q3_3',
       questionEn: 'Which part of the letter states the specific position you are applying for?',
       options: [
-        { key: 'A', text: 'Opening Paragraph' },
-        { key: 'B', text: 'The envelope stamp' },
-        { key: 'C', text: 'Complimentary Close' },
-        { key: 'D', text: 'The date line' }
+        { key: 'A', text: 'The envelope stamp' },
+        { key: 'B', text: 'Complimentary Close' },
+        { key: 'C', text: 'The date line' },
+        { key: 'D', text: 'Opening Paragraph' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'D',
       explanationEn: 'The opening paragraph clearly states why you are writing and identifies the target job title.'
     },
     {
       id: 'q3_4',
       questionEn: 'Which part explains your vocational skills, achievements, and suitability for the job?',
       options: [
-        { key: 'A', text: 'Body Paragraph' },
-        { key: 'B', text: 'Date line' },
-        { key: 'C', text: 'Postal barcode' },
+        { key: 'A', text: 'Date line' },
+        { key: 'B', text: 'Postal barcode' },
+        { key: 'C', text: 'Body Paragraph' },
         { key: 'D', text: 'The blank margins' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'C',
       explanationEn: 'The body paragraph showcases your practical qualifications, projects, and vocational competencies.'
     },
     {
       id: 'q3_5',
       questionEn: 'Which phrase is a proper formal "Complimentary Close"?',
       options: [
-        { key: 'A', text: 'Sincerely,' },
-        { key: 'B', text: 'See ya later!' },
-        { key: 'C', text: 'Bye bye forever,' },
-        { key: 'D', text: 'Catch you later,' }
+        { key: 'A', text: 'See ya later!' },
+        { key: 'B', text: 'Bye bye forever,' },
+        { key: 'C', text: 'Catch you later,' },
+        { key: 'D', text: 'Sincerely,' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'D',
       explanationEn: '"Sincerely," "Yours faithfully," and "Respectfully," are standard formal closes in business correspondence.'
     }
   ],
@@ -1065,24 +1065,24 @@ export const DAILY_QUIZZES: Record<DayNumber, QuizQuestion[]> = {
       id: 'q4_1',
       questionEn: 'Which opening sentence is the most professional for your letter?',
       options: [
-        { key: 'A', text: 'I am writing to apply for the advertised position at your company.' },
-        { key: 'B', text: 'Give me this job because I need money right now.' },
-        { key: 'C', text: 'I saw your building and it looked nice.' },
+        { key: 'A', text: 'Give me this job because I need money right now.' },
+        { key: 'B', text: 'I saw your building and it looked nice.' },
+        { key: 'C', text: 'I am writing to apply for the advertised position at your company.' },
         { key: 'D', text: 'I was bored at home so I wrote this letter.' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'C',
       explanationEn: '"I am writing to apply for the position..." is professional, courteous, and direct.'
     },
     {
       id: 'q4_2',
       questionEn: 'Why should you match your skills with the company job requirements?',
       options: [
-        { key: 'A', text: 'To prove that you have the right capabilities to do the work successfully' },
-        { key: 'B', text: 'To make the letter as long as possible' },
+        { key: 'A', text: 'To make the letter as long as possible' },
+        { key: 'B', text: 'To prove that you have the right capabilities to do the work successfully' },
         { key: 'C', text: 'Because colors look prettier on paper' },
         { key: 'D', text: 'To confuse the interviewer during the interview' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'B',
       explanationEn: 'Matching skills proves relevance and demonstrates that you can fulfill the company’s duties.'
     },
     {
@@ -1091,34 +1091,34 @@ export const DAILY_QUIZZES: Record<DayNumber, QuizQuestion[]> = {
       options: [
         { key: 'A', text: 'Vocational practical skills and project experience' },
         { key: 'B', text: 'Your willingness to learn and work in a team' },
-        { key: 'C', text: 'Irrelevant childhood gossip about your neighbors' },
-        { key: 'D', text: 'Relevant software or tool capabilities' }
+        { key: 'C', text: 'Relevant software or tool capabilities' },
+        { key: 'D', text: 'Irrelevant childhood gossip about your neighbors' }
       ],
-      correctAnswer: 'C',
+      correctAnswer: 'D',
       explanationEn: 'Keep the letter strictly focused on relevant professional and vocational qualifications.'
     },
     {
       id: 'q4_4',
       questionEn: 'What is the purpose of the Closing Paragraph in an application letter?',
       options: [
-        { key: 'A', text: 'To thank the recruiter and express enthusiasm for an interview' },
-        { key: 'B', text: 'To demand immediate salary payment today' },
-        { key: 'C', text: 'To write a recipe for fried rice' },
-        { key: 'D', text: 'To criticize other applicants' }
+        { key: 'A', text: 'To demand immediate salary payment today' },
+        { key: 'B', text: 'To write a recipe for fried rice' },
+        { key: 'C', text: 'To criticize other applicants' },
+        { key: 'D', text: 'To thank the recruiter and express enthusiasm for an interview' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'D',
       explanationEn: 'The closing paragraph thanks the employer and looks forward to discussing qualifications in an interview.'
     },
     {
       id: 'q4_5',
       questionEn: 'Where should your full typed name appear at the end of the letter?',
       options: [
-        { key: 'A', text: 'Directly below the complimentary close and signature' },
-        { key: 'B', text: 'Written backwards at the top right corner' },
+        { key: 'A', text: 'Written backwards at the top right corner' },
+        { key: 'B', text: 'Directly below the complimentary close and signature' },
         { key: 'C', text: 'Inside a secret envelope' },
         { key: 'D', text: 'Nowhere on the paper' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'B',
       explanationEn: 'Your printed name belongs below the signature line at the very bottom.'
     }
   ],
@@ -1127,60 +1127,60 @@ export const DAILY_QUIZZES: Record<DayNumber, QuizQuestion[]> = {
       id: 'q5_1',
       questionEn: 'What was the surprising plot twist revealed by Mr. Hendra?',
       options: [
-        { key: 'A', text: 'The whole quest was an authentic school simulation to test career readiness and English skills!' },
-        { key: 'B', text: 'The school had been moved to another country.' },
-        { key: 'C', text: 'All exams were cancelled forever.' },
+        { key: 'A', text: 'The school had been moved to another country.' },
+        { key: 'B', text: 'All exams were cancelled forever.' },
+        { key: 'C', text: 'The whole quest was an authentic school simulation to test career readiness and English skills!' },
         { key: 'D', text: 'Everyone had to repeat the first grade.' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'C',
       explanationEn: 'The entire journey was an immersive simulation designed by SMK Muhammadiyah Bawang to build real career confidence.'
     },
     {
       id: 'q5_2',
       questionEn: 'Does the game consider "going to college" or "entering the workforce" as the only correct choice?',
       options: [
-        { key: 'A', text: 'No, both paths are valuable and respectable; your future is your choice!' },
-        { key: 'B', text: 'Yes, only working is allowed.' },
+        { key: 'A', text: 'Yes, only working is allowed.' },
+        { key: 'B', text: 'No, both paths are valuable and respectable; your future is your choice!' },
         { key: 'C', text: 'Yes, only college is allowed.' },
         { key: 'D', text: 'Neither is allowed.' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'B',
       explanationEn: 'Vocational graduates can excel both in immediate employment and in higher academic studies.'
     },
     {
       id: 'q5_3',
       questionEn: 'How does mastering English Application Letters benefit students going to college?',
       options: [
-        { key: 'A', text: 'It prepares them for scholarship applications, campus internships, and future careers.' },
-        { key: 'B', text: 'It is completely useless for college students.' },
-        { key: 'C', text: 'It is only used for buying groceries.' },
-        { key: 'D', text: 'It prevents students from borrowing campus books.' }
+        { key: 'A', text: 'It is completely useless for college students.' },
+        { key: 'B', text: 'It is only used for buying groceries.' },
+        { key: 'C', text: 'It prevents students from borrowing campus books.' },
+        { key: 'D', text: 'It prepares them for scholarship applications, campus internships, and future careers.' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'D',
       explanationEn: 'Formal writing skills are vital for university admissions, study grants, and post-graduation jobs.'
     },
     {
       id: 'q5_4',
       questionEn: 'Which core competencies did you demonstrate throughout Muhiba Career Quest?',
       options: [
-        { key: 'A', text: 'English communication, critical thinking, problem-solving, and career readiness' },
-        { key: 'B', text: 'Giving up quickly without trying' },
+        { key: 'A', text: 'Giving up quickly without trying' },
+        { key: 'B', text: 'English communication, critical thinking, problem-solving, and career readiness' },
         { key: 'C', text: 'Ignoring teacher instructions' },
         { key: 'D', text: 'Skipping classes' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'B',
       explanationEn: 'The quest cultivates 21st-century vocational competencies: language, logic, and self-efficacy.'
     },
     {
       id: 'q5_5',
       questionEn: 'What is the spirit and motto of SMK Muhammadiyah Bawang?',
       options: [
-        { key: 'A', text: 'Islamic Character, Skilled Craftsmanship, Independent Leadership (Islami, Terampil, Mandiri)' },
-        { key: 'B', text: 'Waiting for others to do the work' },
-        { key: 'C', text: 'Refusing modern technology' },
+        { key: 'A', text: 'Waiting for others to do the work' },
+        { key: 'B', text: 'Refusing modern technology' },
+        { key: 'C', text: 'Islamic Character, Skilled Craftsmanship, Independent Leadership (Islami, Terampil, Mandiri)' },
         { key: 'D', text: 'Avoiding challenges' }
       ],
-      correctAnswer: 'A',
+      correctAnswer: 'C',
       explanationEn: 'SMK Muhammadiyah Bawang empowers students with Islamic character, skilled craftsmanship, and self-reliance.'
     }
   ]

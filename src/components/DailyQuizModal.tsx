@@ -11,11 +11,49 @@ interface DailyQuizModalProps {
   onClose?: () => void;
 }
 
+interface ShuffledQuestion {
+  id: string;
+  questionEn: string;
+  options: { key: 'A' | 'B' | 'C' | 'D'; text: string }[];
+  correctAnswer: 'A' | 'B' | 'C' | 'D';
+  explanationEn: string;
+}
+
 export const DailyQuizModal: React.FC<DailyQuizModalProps> = ({
   day,
   onQuizComplete
 }) => {
-  const questions: QuizQuestion[] = DAILY_QUIZZES[day] || DAILY_QUIZZES[1];
+  // Dynamically shuffle options and re-label keys so answers are randomized and unpredictable
+  const [questions] = useState<ShuffledQuestion[]>(() => {
+    const baseQuestions = DAILY_QUIZZES[day] || DAILY_QUIZZES[1];
+    const letterKeys: ('A' | 'B' | 'C' | 'D')[] = ['A', 'B', 'C', 'D'];
+    return baseQuestions.map((q) => {
+      const correctOptText = q.options.find((o) => o.key === q.correctAnswer)?.text;
+      const optsCopy = [...q.options];
+      for (let i = optsCopy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [optsCopy[i], optsCopy[j]] = [optsCopy[j], optsCopy[i]];
+      }
+      const newOptions = optsCopy.map((opt, idx) => ({
+        key: letterKeys[idx],
+        text: opt.text
+      }));
+      const newCorrectKey = (newOptions.find((o) => o.text === correctOptText)?.key || 'A') as
+        | 'A'
+        | 'B'
+        | 'C'
+        | 'D';
+
+      return {
+        id: q.id,
+        questionEn: q.questionEn,
+        options: newOptions,
+        correctAnswer: newCorrectKey,
+        explanationEn: q.explanationEn
+      };
+    });
+  });
+
   const [currentIdx, setCurrentIdx] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<'A' | 'B' | 'C' | 'D' | null>(null);
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
